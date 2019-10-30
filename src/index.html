@@ -15,7 +15,7 @@
     <meta name="keywords" content="Supply Chain,Drugs,Counterfeit" />
 
     <!--====== TITLE TAG ======-->
-    <title>Supply-Chain</title>
+    <title>Med-Chain</title>
 
     <!--====== FAVICON ICON =======-->
     <link rel="shortcut icon" type="image/ico" href="images/favicon.png" />
@@ -24,12 +24,12 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/stellarnav.min.css">
-    <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+<!--    <link rel="stylesheet" href="vendors/global/plugins/owl-carousel/owl.carousel.css">-->
+    <link href="vendors/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!--====== MAIN STYLESHEETS ======-->
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -160,7 +160,7 @@
 
 
 
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/modernizr-2.8.3.min.js"></script>
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -213,7 +213,7 @@
                         </div>
                         <div id="main-nav" class="stellarnav">
                             <ul id="nav" class="nav navbar-nav">
-                                <li><a href="index.html">home</a>
+                                <li><a href="" id="homea">home</a>
 
                                 </li>
                                 <li><a href="index.html">about</a>
@@ -245,7 +245,7 @@
                     <div class="row flex-v-center">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="welcome-text text-center">
-                                <h1>Supply-Chain</h1>
+                                <h1>Med-Chain</h1>
                                 <p>We believe in providing end-to-end delivery for drugs</p>
                                 <div class="home-button">
                                     <a id="loginbutton" href="#" onclick="App.redirect()" style="width:auto;">Dashboard</a>
@@ -255,10 +255,11 @@
                     </div>
                 </div>
             </div>
+<!--
             <div class="welcome-single-slide slider-bg-two">
                 <div class="container">
                     <div class="row flex-v-center">
-                        <!-- <button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button> -->
+                         <button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button> 
 
                         <div class="col-md-10 col-md-offset-1">
                             <div class="welcome-text text-center">
@@ -273,6 +274,7 @@
                     </div>
                 </div>
             </div>
+-->
 
 
         </div>
@@ -431,7 +433,7 @@
                                     </div>
                                 </div>
                                 <div class="service-details">
-                                    <h4>Ware House</h4>
+                                    <h4 id=warehouse>Ware House</h4>
                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                                         doloremque laudantium, totam rem aperiam.</p>
                                     <a href="#">read more</a>
@@ -769,14 +771,15 @@
 
 
     <!--====== SCRIPTS JS ======-->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="vendors/global/plugins/jquery.min.js"></script>
+    <script src="vendors/global/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <!--====== PLUGINS JS ======-->
-    <script src="js/vendor/jquery.easing.1.3.js"></script>
-    <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/vendor/jquery.appear.js"></script>
-    <!-- <script src="js/owl.carousel.min.js"></script> -->
+    <script src="vendors/global/plugins/jquery.easing.js"></script>
+    <script src="vendors/global/plugins/jquery-migrate.min.js"></script>
+<!--    <script src="vendors/global/plugins/jjquery.appear.js"></script>-->
+<!--    <script src="vendors/global/plugins/owl-carousel/owl.carousel.min.js"></script>-->
+<!--   <script src="js/owl.carousel.min.js"></script>-->
     <script src="js/stellar.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/stellarnav.min.js"></script>
@@ -788,8 +791,10 @@
     <script src="js/main.js"></script>
 
     <!--===== WEB3 JS=====-->
-    <script src="Web3/index.js"></script>
+<!--    <script src="js/index.js"></script>-->
+   <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

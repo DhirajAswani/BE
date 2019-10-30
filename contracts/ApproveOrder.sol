@@ -1,19 +1,24 @@
-pragma solidity 0.5.0;
+pragma solidity 0.5.8;
 
 contract ApproveOrder{
 
     struct Wholesalerorderdetails{
+        uint order_id;
         uint manufacturer_id;
         uint wholesaler_id;
         uint count;
         string hash;
     }
     
-    mapping (uint => Wholesalerorderdetails) public wholesaleorder;
+    mapping(uint => Wholesalerorderdetails) public wholesaleorder;
+    uint public orders;
   
-    function addOrder(uint manufacturer_id, uint wholesaler_id, uint count, string hash, uint order_id) public {
-        
-        wholesaleorder[order_id] = Wholesalerorderdetails(manufacturer_id, wholesaler_id, count, hash);
+    function addOrder(uint order_id, uint manufacturer_id, uint wholesaler_id, uint count, string memory hash) public {
+        orders++;
+        wholesaleorder[orders] = Wholesalerorderdetails(order_id, manufacturer_id, wholesaler_id, count, hash);
     }
+    
+    
+    
     
 } 
