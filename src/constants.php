@@ -1,8 +1,8 @@
 <?php
 
 define("SERVER" , "localhost");
-define("USER" , "dhiraj");
-define("PASSWORD" , "dhiraj");
+define("USER" , "root");
+define("PASSWORD" , "");
 define("DB" , "pharmaledger");
 define("BASE_SERVER","localhost");
 
