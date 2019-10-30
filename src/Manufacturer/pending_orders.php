@@ -213,6 +213,8 @@
                 and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id
                  and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id 
                  and user.uid=wholesaler.uid";
+
+                 echo $query;
                 $result = mysqli_query($connection , $query);
                 while($row = mysqli_fetch_assoc ($result)){
                             
@@ -226,7 +228,7 @@
                     $warehouse_address = $row['warehouse_address'];
                     $total_amt = $row['manufacturer_product_cost'] * $product_quantity;
                     $product_id = $row['product_id'];
-                    $wholesale_order_id = $row['wholesaler_order_id'];
+                    $wholesaler_order_id = $row['wholesaler_order_id'];
                     // $wholesale_order_id = 10;
                     // $product_quantity = 11;
                    
@@ -248,10 +250,9 @@
                                         echo"<td>{$warehouse_address}</td>";
                                         echo"<td>{$total_amt}</td>";
                                         // echo"<td>{}</td>";
-                                        echo"<td> <a href='../qr.html?wholesale_order_id={$wholesale_order_id}&quantity={$product_quantity}' class = 'btn btn-success'>Approve</a> </td>";
-                                        echo"<td> <a href= '' class = 'btn btn-danger '>Decline</a></td>";
-                                        // echo"<td><a href = 'group_student_delete.php?delete={$student_id}'>Delete</a></td>";
-                                        // echo"<td><a href = 'group_student_update.php?edit={$student_id}'>Edit</a></td>";
+                                        echo"<td> <a href='../qr.html?wholesaler_order_id={$wholesaler_order_id}&quantity={$product_quantity}' class = 'btn btn-success'>Approve</a> </td>";
+                                        echo"<td> <a href= 'wholesalerdeclineorder.php?wholesaler_order_id=$wholesaler_order_id' class = 'btn btn-danger '>Decline</a></td>";
+                                        
                                     echo"</tr>";
 
                                 }

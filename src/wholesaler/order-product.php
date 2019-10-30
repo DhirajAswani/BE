@@ -190,7 +190,7 @@
 
 
                                             <!-- BEGIN FORM-->
-<form action="scripts/product/add.php" id="add_product_form" class="form-horizontal" method="post" enctype="multipart/form-data">
+<form action="wholesalerplaceorder.php" id="add_product_form" class="form-horizontal" method="post" enctype="multipart/form-data">
     <div class="alert alert-danger display-hide">
         <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
 
@@ -242,7 +242,7 @@
                         <span class="required"> * </span>
                 </label>
                 <div class="col-md-8">
-                    <input type="text" name="" class="form-control" placeholder="Quantity" />        
+                    <input type="text" name="quantity" class="form-control" placeholder="Quantity" />        
                 </div>
                 
             </div>
