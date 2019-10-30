@@ -263,13 +263,14 @@
             }
         );
 
-        // var content_array = [];
+        var content_array = [];
        // console.log(hashes.hashdata);
        var count=0;
         scanner.addListener('scan', function(content) {
             
             //alert('showing content : ' + content);
-            if(hasharr.indexOf(content)!=-1)
+
+            if(hasharr.indexOf(content)!=-1 && content_array.includes(content)==false)
             {
 
                 hasharr.replace(content,"");
@@ -284,6 +285,7 @@
             }else{
                 alert("Fraud QR Code!!!!!!");
             }
+            content_array.push(content);
             // window.open(content, "_blank");
         });
         console.log(hasharr);
