@@ -200,6 +200,9 @@
 
                                     <h3 id="count"></h3>
                                     <h3>QR Codes Scanned</h3>
+                                    <div id="linkbtn">
+                                        <a class = "btn btn-success" href="addtowarehouse.php?orderid=<?php echo $_GET['orderId'] ?>">Add to Warehouse</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +241,7 @@
             var splitmeagain=urlarray[1];
             var orderid=splitmeagain.split("=");
             orderid=orderid[1];
-            
+            // document.getElementById("linkbtn").style.display="none";
             $.ajax({ 
                type: "POST", 
                url: "fetch.php", 
@@ -280,7 +283,9 @@
                 document.getElementById("count").innerHTML=count;
                 if(count==total)
                 {
-                    alert("All hash have been matched!!")
+                    alert("All hash have been matched!!");
+                    // document.getElementById("linkbtn").style.display="block";
+                    // document.getElementById("linkbtn").innerHTML=("<a href='addtowarehouse.php?orderid="+orderid+">Add To Warehpuses</a>");
                 }
             }else{
                 alert("Fraud QR Code!!!!!!");

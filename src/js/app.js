@@ -15,9 +15,11 @@ initWeb3: function() {
       App.web3Provider = web3.currentProvider;
       web3 = new Web3(web3.currentProvider);
     } else {
+        
       // Specify default instance if no web3 instance provided
       App.web3Provider = new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545');
       web3 = new Web3(App.web3Provider);
+        alert("here");
     }
     return App.initContract();
   },
@@ -30,16 +32,16 @@ initWeb3: function() {
 
   initContract: function() {
       alert("ss");
-//    $.getJSON("ApproveOrder.json", function(certificate) {
-//      // Instantiate a new truffle contract from the artifact
-//      App.contracts.ApproveOrder = TruffleContract(certificate);
-//      // Connect provider to interact with contract
-//      App.contracts.ApproveOrder.setProvider(App.web3Provider);
-//
-//      //App.listenForEvents();    
+    $.getJSON("ApproveOrder.json", function(certificate) {
+      // Instantiate a new truffle contract from the artifact
+      App.contracts.ApproveOrder = TruffleContract(certificate);
+      // Connect provider to interact with contract
+      App.contracts.ApproveOrder.setProvider(App.web3Provider);
+
+//      App.listenForEvents();    
 //
       return App.render();
-//    });
+    });
   },
 
 
@@ -86,7 +88,7 @@ render: function() {
       console.warn(error);
     });
     }finally{
-//        return App.addO();   
+        return App.addO();   
     }
     
     
@@ -94,8 +96,10 @@ render: function() {
   },
     
     addO: function(){
+        alert("addO..");
         var url=$(location).attr("href");
-    var urlarray=url.split("?");
+        alert(url);
+    var urlarray=url.split("w");
     var splitmeagain=urlarray[1];
     var semifinalsplit=splitmeagain.split("&");
     var finalsplit=semifinalsplit[1].split("=");
@@ -104,16 +108,16 @@ render: function() {
     orderid=orderid[1];
     var quantity=semifinalsplit[1].split("=");
     quantity=quantity[1];
+        alert("orderid="+orderid+"quantity="+quantity);
     if(orderid>0 && quantity>0){
         alert(">");
         
-        App.contracts.ApproveOrder.deployed().then(function(instance){
-            return instance.addOrder(orderid, 1, 4, quantity, "sasbsdfaj362neksj3bsbsafg", {from: App.account, gas:300000}).then(function(result){
-                
+         App.contracts.App1roveOrder.deployed().then(function(instance){
+            return instance.addOrder(orderid, 1, 4, quantity, "sasbsdfaj362neksj3bsbsafg", {from: App.account, gas:300000}); }).then(function(result){
+//                alert("sshshshshs");
             }).catch(function(err){
                console.log(err+"sassasasasasa"); 
             });
-        });
     }
     },
 
@@ -124,6 +128,7 @@ render: function() {
 };
 
 $(function() {
+//    Web3 = require('web3');
   $(window).load(function() {
     App.init();
   });

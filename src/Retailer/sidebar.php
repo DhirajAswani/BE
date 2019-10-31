@@ -42,7 +42,7 @@
                             
                         </li>
                         <li class="nav-item  ">
-                            <a href="myproducts.php" class="nav-link nav-toggle">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="fa fa-list"></i>
                                 <span class="title">My Products</span>
                                 
@@ -52,12 +52,11 @@
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-briefcase"></i>
-                                <span class="title">Request a Manufacturer</span>
+                                <span class="title">Request a Wholesaler</span>
                                 
                             </a>
                             
                         </li>
-
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="fa fa-shopping-cart"></i>
@@ -71,7 +70,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="pending-orders-ofme.php" class="nav-link ">
+                                    <a href="retailer_approved_orders_from_wholesaler.php" class="nav-link ">
                                         <span class="title">Approved</span>
                                     </a>
                                 </li>
@@ -92,7 +91,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="pending_orders_from_retailer.php" class="nav-link ">
+                                    <a href="pending_orders_from_retailer" class="nav-link ">
                                         <span class="title">Pending</span>
                                     </a>
                                 </li>

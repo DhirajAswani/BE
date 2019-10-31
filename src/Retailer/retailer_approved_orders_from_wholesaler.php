@@ -1,9 +1,6 @@
 
 <!-- SELECT * FROM wholesaler_order,manufacturer,product,wholesaler where wholesaler_order.manufacturer_id=manufacturer.uid and wholesaler_order.status=0 and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id and user.uid=wholesaler.uid -->
 <?php
-    session_start();
-    $user_id = $_SESSION['user_id'];
-    // echo $user_id;
     require_once('../db.php');
    
 ?>
@@ -196,74 +193,41 @@
                                         <th>Sr No.</th>
                                         <th>Product Name</th>
                                         <th>Quantity</th>
-                                        <th>Wholesaler Name</th>
-                                        <!-- <th>Address</th> -->
+                                        <th>Manufacturer/Company Name</th>
+                                        
                                         
                                         <th>Total Amount</th>
                                         
-                                        <th>Approve</th>
-                                        <th>Decline</th>
+                                        <th>Authenticate</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
         // $user_id = 6;
         $count = 0;
+        $count++;
         //   $query = "SELECT * FROM user_event_payment, user, product WHERE user_event_payment.uid = user.uid AND event_id = $event_id AND product.prod_id = user_event_payment.prod_id";
 //                echo $query;
-            // $query = "SELECT * FROM wholesaler_order,manufacturer,product,wholesaler,user where 
-            //     wholesaler_order.manufacturer_id=manufacturer.uid and wholesaler_order.status=0 
-            //     and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id
-            //      and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id 
-            //      and user.uid=wholesaler.uid";
-
-                 // echo $query;
-
-                 // $query = "select * from wholesaler_order,product,wholesaler,manufacturer,user WHERE STATUS = 0 and wholesaler_order.product_id = product.product_id and  wholesaler_order.manufacturer_id = 1 and user.uid = wholesaler.uid";
-
-            $query = "select * from wholesaler_order,manufacturer,product,user WHERE status=0 and wholesaler_order.manufacturer_id={$user_id} and manufacturer.uid=wholesaler_order.manufacturer_id and product.product_id=wholesaler_order.product_id and user.uid=wholesaler_order.wholesaler_id";
-
-                 // echo $query;
-
+            $query = "SELECT * FROM `retailer_order`,wholesaler,product WHERE status=1 and retailer_order.wholesaler_id=wholesaler.uid and product.product_id=retailer_order.product_id";
                 $result = mysqli_query($connection , $query);
-
                 while($row = mysqli_fetch_assoc ($result)){
                             
-                    $count++; 
-                    $product_name = $row['product_name'];
-                    $product_quantity = $row['product_quantity'];  
-                    $username = $row['uname'];
-                    $wholesale_id = $row['wholesaler_id'];
-                    //$warehouse_name = $row['warehouse_name'];
-                    $uname = $row['uname'];
-                    //$warehouse_address = $row['warehouse_address'];
-                    $total_amt = $row['manufacturer_product_cost'] * $product_quantity;
-                    $product_id = $row['product_id'];
-                    $wholesaler_order_id = $row['wholesaler_order_id'];
-                    // $wholesale_order_id = 10;
-                    // $product_quantity = 11;
-                   
-                     
-                    
-
-                   
-
-//                    echo"<br>";
-//                    echo $student_name;
-                    
+                  
                     echo"<tr>";
                               echo"<td>{$count}</td>";
-                              echo"<td>{$product_name}</td>";
-                              echo "<td>{$product_quantity}</td>";
+                              echo"<td>{$row['product_name']}</td>";
+                              echo "<td>{$row['product_quantity']}</td>";
                                         // echo"<td>{$event_name}</td>";
-                                         echo"<td>{$username}</td>";
+                                        echo"<td>{$row['warehouse_name']}</td>";
                                         
-                                        // echo"<td>{$warehouse_address}</td>";
-                                        echo"<td>{$total_amt}</td>";
+                                        
+                                        echo"<td>{$row['total_cost']}</td>";
                                         // echo"<td>{}</td>";
-                                        echo"<td> <a href='../qr.html?wholesaler_order_id={$wholesaler_order_id}&quantity={$product_quantity}' class = 'btn btn-success'>Approve</a> </td>";
-                                        echo"<td> <a href= 'wholesalerdeclineorder.php?wholesaler_order_id=$wholesaler_order_id' class = 'btn btn-danger '>Decline</a></td>";
+                                        echo"<td> <a href='qrcoderetailer.php?orderId={$row['retailer_order_id']}' class = 'btn btn-success'>Authenticate</a> </td>";
                                         
+                                        // echo"<td><a href = 'group_student_delete.php?delete={$student_id}'>Delete</a></td>";
+                                        // echo"<td><a href = 'group_student_update.php?edit={$student_id}'>Edit</a></td>";
                                     echo"</tr>";
 
                                 }

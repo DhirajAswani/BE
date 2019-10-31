@@ -1,12 +1,3 @@
-
-<!-- SELECT * FROM wholesaler_order,manufacturer,product,wholesaler where wholesaler_order.manufacturer_id=manufacturer.uid and wholesaler_order.status=0 and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id and user.uid=wholesaler.uid -->
-<?php
-    session_start();
-    $user_id = $_SESSION['user_id'];
-    // echo $user_id;
-    require_once('../db.php');
-   
-?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -14,8 +5,7 @@
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
-
-   
+ 
     <head>
         <meta charset="utf-8" />
         <title>Quick ERP | Dashboard</title>
@@ -154,11 +144,11 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDEBAR -->
-           <?php
-                require_once('sidebar.php');
+            <?php
+            include_once("sidebar.php");
 
-           ?>
-            <!-- END SIDEBAR -->
+            ?>
+                       <!-- END SIDEBAR -->
 
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
@@ -173,134 +163,111 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>Pending Orders</span>
+                                <span>Order Product</span>
                             </li>
                         </ul>
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title"> Pending Orders
-                        <small>dashboard & statistics</small>
+                    <h3 class="page-title">Order Product
+                        <small>Order new Product</small>
                     </h3>
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
                     <!-- BEGIN DASHBOARD STATS 1-->
                     <div class="row">
+                        <div class="col-md-12">
+                                    <!-- BEGIN VALIDATION STATES-->
+                                    <div class="portlet light portlet-fit portlet-form bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="icon-settings font-dark"></i>
+                                                <span class="caption-subject font-dark sbold uppercase">Order Product</span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body form">
 
-                        <div class="row">
-                            <div class="col-md-10" style = "margin-left : 8%" >
-                                <div class="table-responsive">
-                                <table class="table table-striped custom-table datatable mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>Sr No.</th>
-                                        <th>Product Name</th>
-                                        <th>Quantity</th>
-                                        <th>Wholesaler Name</th>
-                                        <!-- <th>Address</th> -->
-                                        
-                                        <th>Total Amount</th>
-                                        
-                                        <th>Approve</th>
-                                        <th>Decline</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-        // $user_id = 6;
-        $count = 0;
-        //   $query = "SELECT * FROM user_event_payment, user, product WHERE user_event_payment.uid = user.uid AND event_id = $event_id AND product.prod_id = user_event_payment.prod_id";
-//                echo $query;
-            // $query = "SELECT * FROM wholesaler_order,manufacturer,product,wholesaler,user where 
-            //     wholesaler_order.manufacturer_id=manufacturer.uid and wholesaler_order.status=0 
-            //     and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id
-            //      and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id 
-            //      and user.uid=wholesaler.uid";
 
-                 // echo $query;
 
-                 // $query = "select * from wholesaler_order,product,wholesaler,manufacturer,user WHERE STATUS = 0 and wholesaler_order.product_id = product.product_id and  wholesaler_order.manufacturer_id = 1 and user.uid = wholesaler.uid";
+                                            <!-- BEGIN FORM-->
+<form action="retailerplaceorder.php" id="add_product_form" class="form-horizontal" method="post" enctype="multipart/form-data">
+    <div class="alert alert-danger display-hide">
+        <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
 
-            $query = "select * from wholesaler_order,manufacturer,product,user WHERE status=0 and wholesaler_order.manufacturer_id={$user_id} and manufacturer.uid=wholesaler_order.manufacturer_id and product.product_id=wholesaler_order.product_id and user.uid=wholesaler_order.wholesaler_id";
-
-                 // echo $query;
-
-                $result = mysqli_query($connection , $query);
-
-                while($row = mysqli_fetch_assoc ($result)){
-                            
-                    $count++; 
-                    $product_name = $row['product_name'];
-                    $product_quantity = $row['product_quantity'];  
-                    $username = $row['uname'];
-                    $wholesale_id = $row['wholesaler_id'];
-                    //$warehouse_name = $row['warehouse_name'];
-                    $uname = $row['uname'];
-                    //$warehouse_address = $row['warehouse_address'];
-                    $total_amt = $row['manufacturer_product_cost'] * $product_quantity;
-                    $product_id = $row['product_id'];
-                    $wholesaler_order_id = $row['wholesaler_order_id'];
-                    // $wholesale_order_id = 10;
-                    // $product_quantity = 11;
-                   
-                     
-                    
-
-                   
-
-//                    echo"<br>";
-//                    echo $student_name;
-                    
-                    echo"<tr>";
-                              echo"<td>{$count}</td>";
-                              echo"<td>{$product_name}</td>";
-                              echo "<td>{$product_quantity}</td>";
-                                        // echo"<td>{$event_name}</td>";
-                                         echo"<td>{$username}</td>";
-                                        
-                                        // echo"<td>{$warehouse_address}</td>";
-                                        echo"<td>{$total_amt}</td>";
-                                        // echo"<td>{}</td>";
-                                        echo"<td> <a href='../qr.html?wholesaler_order_id={$wholesaler_order_id}&quantity={$product_quantity}' class = 'btn btn-success'>Approve</a> </td>";
-                                        echo"<td> <a href= 'wholesalerdeclineorder.php?wholesaler_order_id=$wholesaler_order_id' class = 'btn btn-danger '>Decline</a></td>";
-                                        
-                                    echo"</tr>";
-
-                                }
-                    
-                    
+    <div class="form-body">
        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Select Mnaufacturer
+                        <span class="required"> * </span>
+                    </label>
+                    <div class="col-md-8">
+                        <select name="wholesaler_id" id="wholesaler_id" class="form-control">
+                            <option value="">Select Wholesaler</option>
+                            <?php
+                            require_once("../db.php");
+                            $query="select * from wholesaler";
+                            echo $query;
+                            $res=mysqli_query($connection,$query);
+                            while($row=mysqli_fetch_assoc($res))
+                            {
+                                echo "<option value='".$row['uid']."'>".$row['warehouse_name']."</option>";
+                            }
+                            
+                            ?>
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Products
+                    <span class="required"> * </span></label>
+                    <div class="col-md-8">
+                        <select name="product_id" id="product_id" class="form-control">
+                            
+                            <option value=""></option>
+                        </select>                    
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Quantity
+                        <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <input type="text" name="quantity" class="form-control" placeholder="Quantity" />        
+                </div>
+                
+            </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn green" name="add_product">Order</button>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- END FORM-->
 
-              ?>
-                                    <!-- <tr>
-                                        <td>01</td>
-                                        <td>Medicine 1</td>
-                                        <td>20</td>
-                                        <td>ABC</td>
-                                        <td>Gandhi Nagar pune</td>
-                                        <td>500</td>
 
-                                        
 
-                                        <td>
-                                        <a href='../qr.html?wholesale_order_id=10&quantity=11' class = 'btn btn-success'>Approve</a>
-                                        </td>
-                                        <td>
-                                        <a href="../qr.html?wholesale_order_id=10&quantity=11" class = "btn btn-danger">Decline</a>
-                                        </td>
-                                        
 
-                                    </tr> -->
-                                    
-                                </tbody>
-                            </table>
-
+                                        </div>
+                                        <!-- END VALIDATION STATES-->
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                    
-                        
                     </div>
                     <div class="clearfix"></div>
                     <!-- END DASHBOARD STATS 1-->
@@ -349,6 +316,34 @@
         <!-- END THEME LAYOUT SCRIPTS -->
         <!--BEGIN CUSTOM SCRIPT LOADING-->
         <script src="../vendors/pages/scripts/custom.js" type="text/javascript"></script>
+        <script>
+$("select[name='wholesaler_id']" ).change(function () {
+    var wholesalerID = $(this).val();
+
+
+    if(wholesalerID) {
+
+
+        jQuery.ajax({
+            url: "getproducts.php",
+            dataType: 'Json',
+            data: {'id':wholesalerID},
+            success: function(data) {
+                console.log(data);
+                $('select[name="product_id"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="product_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                });
+            }
+        });
+
+
+    }else{
+        $('select[name="product_id"]').empty();
+    }
+});
+</script>
+
         <!--END OF CUSTOM SCRIPT LOADING-->
     </body>
 

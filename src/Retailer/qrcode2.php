@@ -1,9 +1,6 @@
 
 <!-- SELECT * FROM wholesaler_order,manufacturer,product,wholesaler where wholesaler_order.manufacturer_id=manufacturer.uid and wholesaler_order.status=0 and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id and user.uid=wholesaler.uid -->
 <?php
-    session_start();
-    $user_id = $_SESSION['user_id'];
-    // echo $user_id;
     require_once('../db.php');
    
 ?>
@@ -40,7 +37,12 @@
         <link href="../vendors/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../vendors/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.png" /> </head>
+        <link rel="shortcut icon" href="favicon.png" />
+
+        <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" ></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+         </head>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
@@ -173,14 +175,14 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>Pending Orders</span>
+                                <span>Approved Orders</span>
                             </li>
                         </ul>
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title"> Pending Orders
-                        <small>dashboard & statistics</small>
+                    <h3 class="page-title"> Approved Orders
+                        <small>Check & Authenticate</small>
                     </h3>
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
@@ -188,113 +190,16 @@
                     <div class="row">
 
                         <div class="row">
-                            <div class="col-md-10" style = "margin-left : 8%" >
+                            <div class="col-md-8" style = "margin-left : 8%" >
                                 <div class="table-responsive">
-                                <table class="table table-striped custom-table datatable mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>Sr No.</th>
-                                        <th>Product Name</th>
-                                        <th>Quantity</th>
-                                        <th>Wholesaler Name</th>
-                                        <!-- <th>Address</th> -->
-                                        
-                                        <th>Total Amount</th>
-                                        
-                                        <th>Approve</th>
-                                        <th>Decline</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-        // $user_id = 6;
-        $count = 0;
-        //   $query = "SELECT * FROM user_event_payment, user, product WHERE user_event_payment.uid = user.uid AND event_id = $event_id AND product.prod_id = user_event_payment.prod_id";
-//                echo $query;
-            // $query = "SELECT * FROM wholesaler_order,manufacturer,product,wholesaler,user where 
-            //     wholesaler_order.manufacturer_id=manufacturer.uid and wholesaler_order.status=0 
-            //     and wholesaler_order.manufacturer_id=1 and wholesaler_order.product_id=product.product_id
-            //      and wholesaler_order.wholesaler_id=wholesaler.uid and user.uid=wholesaler_order.wholesaler_id 
-            //      and user.uid=wholesaler.uid";
+                                
+                                <video id="preview"></video>
 
-                 // echo $query;
+                                </div> 
+                                <div class="col-md-4">
 
-                 // $query = "select * from wholesaler_order,product,wholesaler,manufacturer,user WHERE STATUS = 0 and wholesaler_order.product_id = product.product_id and  wholesaler_order.manufacturer_id = 1 and user.uid = wholesaler.uid";
-
-            $query = "select * from wholesaler_order,manufacturer,product,user WHERE status=0 and wholesaler_order.manufacturer_id={$user_id} and manufacturer.uid=wholesaler_order.manufacturer_id and product.product_id=wholesaler_order.product_id and user.uid=wholesaler_order.wholesaler_id";
-
-                 // echo $query;
-
-                $result = mysqli_query($connection , $query);
-
-                while($row = mysqli_fetch_assoc ($result)){
-                            
-                    $count++; 
-                    $product_name = $row['product_name'];
-                    $product_quantity = $row['product_quantity'];  
-                    $username = $row['uname'];
-                    $wholesale_id = $row['wholesaler_id'];
-                    //$warehouse_name = $row['warehouse_name'];
-                    $uname = $row['uname'];
-                    //$warehouse_address = $row['warehouse_address'];
-                    $total_amt = $row['manufacturer_product_cost'] * $product_quantity;
-                    $product_id = $row['product_id'];
-                    $wholesaler_order_id = $row['wholesaler_order_id'];
-                    // $wholesale_order_id = 10;
-                    // $product_quantity = 11;
-                   
-                     
-                    
-
-                   
-
-//                    echo"<br>";
-//                    echo $student_name;
-                    
-                    echo"<tr>";
-                              echo"<td>{$count}</td>";
-                              echo"<td>{$product_name}</td>";
-                              echo "<td>{$product_quantity}</td>";
-                                        // echo"<td>{$event_name}</td>";
-                                         echo"<td>{$username}</td>";
-                                        
-                                        // echo"<td>{$warehouse_address}</td>";
-                                        echo"<td>{$total_amt}</td>";
-                                        // echo"<td>{}</td>";
-                                        echo"<td> <a href='../qr.html?wholesaler_order_id={$wholesaler_order_id}&quantity={$product_quantity}' class = 'btn btn-success'>Approve</a> </td>";
-                                        echo"<td> <a href= 'wholesalerdeclineorder.php?wholesaler_order_id=$wholesaler_order_id' class = 'btn btn-danger '>Decline</a></td>";
-                                        
-                                    echo"</tr>";
-
-                                }
-                    
-                    
-       
-
-              ?>
-                                    <!-- <tr>
-                                        <td>01</td>
-                                        <td>Medicine 1</td>
-                                        <td>20</td>
-                                        <td>ABC</td>
-                                        <td>Gandhi Nagar pune</td>
-                                        <td>500</td>
-
-                                        
-
-                                        <td>
-                                        <a href='../qr.html?wholesale_order_id=10&quantity=11' class = 'btn btn-success'>Approve</a>
-                                        </td>
-                                        <td>
-                                        <a href="../qr.html?wholesale_order_id=10&quantity=11" class = "btn btn-danger">Decline</a>
-                                        </td>
-                                        
-
-                                    </tr> -->
-                                    
-                                </tbody>
-                            </table>
-
+                                    <h3 id="count"></h3>
+                                    <h3>QR Codes Scanned</h3>
                                 </div>
                             </div>
                         </div>
@@ -323,6 +228,76 @@
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
+        <script>
+        var hashes="";
+        var hasharr="";
+        var total;
+        $(document).ready(function (){
+            var url=$(location).attr("href");
+            var urlarray=url.split("?");
+            var splitmeagain=urlarray[1];
+            var orderid=splitmeagain.split("=");
+            orderid=orderid[1];
+            
+            $.ajax({ 
+               type: "POST", 
+               url: "fetch.php", 
+               data: { orderId : orderid}, 
+               success: function(ans) {
+                        hashes=JSON.parse(ans);
+                        // JSON.stringify(hashes);
+                        //console.log(hashes['hashdata']);
+                        hasharr=(hashes['hashdata']).toString();
+                        total=hashes['product_quantity'];
+                      console.log(hasharr); 
+                     } 
+                });
+        //         var arr=hasharr.split(",");
+        // console.log(arr); 
+        });
+        
+        
+        let scanner = new Instascan.Scanner(
+            {
+                video: document.getElementById('preview')
+            }
+        );
+
+        var content_array = [];
+       // console.log(hashes.hashdata);
+       var count=0;
+        scanner.addListener('scan', function(content) {
+            
+            //alert('showing content : ' + content);
+
+            if(hasharr.indexOf(content)!=-1 && content_array.includes(content)==false)
+            {
+
+                hasharr.replace(content,"");
+                console.log(hasharr);
+                alert("Authenticated!!");
+                count++;
+                document.getElementById("count").innerHTML=count;
+                if(count==total)
+                {
+                    alert("All hash have been matched!!")
+                }
+            }else{
+                alert("Fraud QR Code!!!!!!");
+            }
+            content_array.push(content);
+            // window.open(content, "_blank");
+        });
+        console.log(hasharr);
+        Instascan.Camera.getCameras().then(cameras => 
+        {
+            if(cameras.length > 0){
+                scanner.start(cameras[0]);
+            } else {
+                console.error("camer not working!");
+            }
+        });
+    </script>
         <!-- BEGIN CORE PLUGINS -->
         <script src="../vendors/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="../vendors/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

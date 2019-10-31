@@ -206,13 +206,13 @@
                                     <?php
         // $user_id = 6;
         $count = 0;
-        $count++;
+        
         //   $query = "SELECT * FROM user_event_payment, user, product WHERE user_event_payment.uid = user.uid AND event_id = $event_id AND product.prod_id = user_event_payment.prod_id";
 //                echo $query;
             $query = "SELECT * FROM `wholesaler_order`,manufacturer,product WHERE status=1 and wholesaler_order.manufacturer_id=manufacturer.uid and product.product_id=wholesaler_order.product_id";
                 $result = mysqli_query($connection , $query);
                 while($row = mysqli_fetch_assoc ($result)){
-                            
+                         $count++;   
                   
                     echo"<tr>";
                               echo"<td>{$count}</td>";

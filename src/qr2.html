@@ -17,7 +17,7 @@ h1 { text-align: center; text-shadow: 2px 2px 0px rgba(255,255,255,.7), 5px 7px 
   
   <div id="code" style="float:left; width:100%; height:20px; text-align:center; margin-top:10px"></div>
   <div>
-      <a href="Manufacturer/index.php" style="display:inline-block;line-height:50px;text-align:center;width:100px;height:50px;background: #00fa9a;border:solid 1px #008000;border-radius:10px;text-decoration: none;" class="btn btn-success">Dashboard</a>
+      <a href="wholesaler/index.php" style="display:inline-block;line-height:50px;text-align:center;width:100px;height:50px;background: #00fa9a;border:solid 1px #008000;border-radius:10px;text-decoration: none;" class="btn btn-success">Dashboard</a>
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="jquery.qrcode.min.js"></script>
@@ -218,11 +218,11 @@ hash_array.push(SHA1($(this).text()));
 
     $.ajax({ 
        type: "POST", 
-       url: "Manufacturer/hashinserter.php", 
+       url: "wholesaler/hashinserter.php", 
        data: { hasharray : hash_array,
        			orderId : orderid[1]}, 
        success: function(ans) { 
-              alert(ans); 
+              // alert(ans); 
        		 } 
 		}); 
     // window.location.href="Manufacturer/hashinserter.php";

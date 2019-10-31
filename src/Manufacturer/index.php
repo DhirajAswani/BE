@@ -1,3 +1,10 @@
+<?php
+
+// session_start();
+//     $user_id = $_SESSION['user_id'];
+//     echo $user_id;
+?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
